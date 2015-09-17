@@ -1,50 +1,50 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('kendaraan',['kendaraan']);
+var db = mongojs('pelamar',['pelamar']);
 var bodyParser = require('body-parser');
 
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 
-app.get('/kendaraan',function(req,res){
+app.get('/pelamar',function(req,res){
 	console.log("I received a GET requested")
-db.kendaraan.find(function(err,docs){
+db.pelamar.find(function(err,docs){
 	console.log(docs);
 	res.json(docs);
 })
 
 });
 
-app.post('/kendaraan',function(req,res){
+app.post('/pelamar',function(req,res){
 	console.log(req.body);
-	db.kendaraan.insert(req.body,function(err,doc){
+	db.pelamar.insert(req.body,function(err,doc){
 		res.json(doc);
 	});
 });
 
-app.delete('/kendaraan/:id', function(req, res){
+app.delete('/pelamar/:id', function(req, res){
 	var id = req.params.id;
 	console.log(id);
-	db.kendaraan.remove({_id:mongojs.ObjectId(id)},function(err,doc){
+	db.pelamar.remove({_id:mongojs.ObjectId(id)},function(err,doc){
 		res.json(doc);
 	});
 });
 
-app.get('/kendaraan/:id', function (req, res) {
+app.get('/pelamar/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
-  db.kendaraan.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+  db.pelamar.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
 });
 
 
-app.put('/kendaraan/:id', function (req, res) {
+app.put('/pelamar/:id', function (req, res) {
   var id = req.params.id;
   console.log(req.body.nopol);
-  db.kendaraan.findAndModify({
+  db.pelamar.findAndModify({
     query: {_id: mongojs.ObjectId(id)},
     update: {$set: {nopol: req.body.nopol, jenis: req.body.jenis}},
     new: true}, function (err, doc) {
@@ -54,5 +54,5 @@ app.put('/kendaraan/:id', function (req, res) {
 });
 
 
-app.listen(3001);
-console.log("server tun in 3001");
+app.listen(300);
+console.log("server tun in 300");

@@ -1,41 +1,268 @@
 <!doctype html>
 <html ng-app="myApp">
   <head>
-    
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bootstrap-theme.min.css">
-    <title>Kendaraan</title>
+      
+          <style>
+        body { padding-top:50px; }
+    </style>
+    <title>pelamar</title>
+
+  
+   <!--<script src="app.js"></script>-->
+    
   </head>
   <body>
+
+  <div class="container" ng-app="myApp" ng-controller="AppCtrl">
+  
+<!--  <div class="alert alert-info">
+    <p>Sort Type: {{ sortType }}</p>
+    <p>Sort Reverse: {{ sortReverse }}</p>
+    <p>Search Query: {{ searchFish }}</p>
+  </div>-->
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+
+      </div>      
+    </div>
+    </form>
+  <table class="table table-bordered table-striped">
     
-    <div class="container" ng-controller="AppCtrl">
-      <h1>Daftar Kendaraan</h1>
+    <thead>
+      <tr>
+        <td>
+            <a href="#" ng-click="sortType = 'calon.tglmasuk'; sortReverse = !sortReverse">
+                tglmasuk
+                <span ng-show="sortType == 'calon.tglmasuk' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'calon.tglmasuk' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+            <a href="#" ng-click="sortType = 'calon.nama'; sortReverse = !sortReverse">
+                <span ng-show="sortType == 'calon.nama' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'calon.nama' && sortReverse" class="fa fa-caret-up"></span>
+                nama
+          </a>
+        </td>
+        <td>
+            <a href="#" ng-click="sortType = 'calon.kota'; sortReverse = !sortReverse">
+                <span ng-show="sortType == 'calon.kota' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'calon.kota' && sortReverse" class="fa fa-caret-up"></span>
+                kota
+          </a>
+        </td>
+          <td>
+              <a href="#" ng-click="sortType = 'calon.TglLahir'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'calon.TglLahir' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'calon.TglLahir' && sortReverse" class="fa fa-caret-up"></span>
+                  TglLahir
+              </a>
+          </td>
+          <td>
+              <a href="#" ng-click="sortType = 'alamat'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'alamat' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'alamat' && sortReverse" class="fa fa-caret-up"></span>
+                  alamat
+              </a>
+          </td>
+
+          <td>
+              <a href="#" ng-click="sortType = 'NoHP'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'NoHP' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'NoHP' && sortReverse" class="fa fa-caret-up"></span>
+                  NoHP
+              </a>
+          </td>
+          <td>
+              <a href="#" ng-click="sortType = 'pendidikan'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'pendidikan' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'pendidikan' && sortReverse" class="fa fa-caret-up"></span>
+                  pendidikan
+              </a>
+          </td>
+          
+          <td>
+              <a href="#" ng-click="sortType = 'sekolah'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'sekolah' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'sekolah' && sortReverse" class="fa fa-caret-up"></span>
+                  sekolah
+              </a>
+          </td>
+          <td>
+              <a href="#" ng-click="sortType = 'calon.jurusan'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'calon.jurusan' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'calon.jurusan' && sortReverse" class="fa fa-caret-up"></span>
+                  jurusan
+              </a>
+          </td>
+          <td>
+              <a href="#" ng-click="sortType = 'pengalaman'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'pengalaman' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'pengalaman' && sortReverse" class="fa fa-caret-up"></span>
+                  pengalaman 
+              </a>
+          </td>
+          <td>
+              <a href="#" ng-click="sortType = 'pelatihan'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'pelatihan' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'pelatihan' && sortReverse" class="fa fa-caret-up"></span>
+                  pelatihan 
+              </a>
+          </td>
+          <td>
+              <a href="#" ng-click="sortType = 'calon.foto'; sortReverse = !sortReverse">
+                  <span ng-show="sortType == 'calon.foto' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'calon.foto' && sortReverse" class="fa fa-caret-up"></span>
+                  foto
+              </a>
+          </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="calon in pelamar | orderBy:sortType:sortReverse| filter:searchFish">
+          <td>{{calon.tglmasuk}}</td>
+          <td>{{calon.nama}}</td>
+          <td>{{calon.kota}}</td>
+          <td>{{calon.TglLahir}}</td>
+          <td>{{calon.alamat}}</td>
+          <td>{{calon.NoHP}}</td>
+          <td>{{calon.pendidikan}}</td>
+          <td>{{calon.sekolah}}</td>
+          <td>{{calon.jurusan}}</td>
+          <td>{{calon.pengalaman}}</td>
+          <td>{{calon.pelatihan}}</td>  
+          <td>{{calon.foto}}</td> 
+          
+
+      </tr>
+    </tbody>
+    
+  </table>
+  
+</div>
+
+      <!-- <div class="container" ng-app="myApp" ng-controller="AppCtrl">
+
+<div class="alert alert-info">
+<p>Sort Type: {{ sortType }}</p>
+<p>Sort Reverse: {{ sortReverse }}</p>
+<p>Search Query: {{ searchFish }}</p>
+</div>
+<form>
+<div class="form-group">
+<div class="input-group">
+<div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+<input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+
+</div>      
+</div>
+</form>
+<table class="table table-bordered table-striped">
+
+<thead>
+<tr>
+<td>
+<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+Sushi Roll 
+<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+</a>
+</td>
+<td>
+<a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
+<span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
+<span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
+Fish Type 
+</a>
+</td>
+<td>
+<a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+<span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+<span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+Taste Level 
+</a>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse| filter:searchFish">
+<td>{{ roll.name }}</td>
+<td>{{ roll.fish }}</td>
+<td>{{ roll.tastiness }}</td>
+</tr>
+</tbody>
+
+</table>
+
+</div> -->
+
+
+<!--
+     <div class="container" ng-controller="AppCtrl">
+      <h1>Daftar pelamar</h1>
       <table class="table" >
         <thead>
           <tr>
-            <th>No Polisi</th>
-            <th>Jenis</th>  
-            <th>Action</th>
-          </tr>
+            <th>Tanggl Surat</th>
+            <th>Nama Lengkap </th>  
+            <th>Tempat Lahir</th>
+            <th>Tgl Lahir</th>
+            <th>Alamat</th>
+            <th>No HP</th>
+            <th>Pendidikan</th>
+            <th>Sekolah</th>
+            <th>Jurusan</th>
+            <th>Pengalaman</th>
+            <th>Pelatihan</th>
+            <th>Foto</th> 
+              <th>Act</th>
+            </tr>
         </thead>
         <tbody>
-          <tr>
-          <td><input class="form-control" ng-model="mobil.nopol"></td>
-          <td><input class="form-control" ng-model="mobil.jenis"></td>
-          <td><button class="btn btn-primary" ng-click="addMobil()">Tambah Mobil</button></td>
-          <td><button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button></td>
-          </tr>
-          <tr ng-repeat="mobil in kendaraan">
-          <td>{{mobil.nopol}}</td>
-          <td>{{mobil.jenis}}</td>
-          <td><button class="btn btn-danger" ng-click="remove(mobil._id)">Remove</button></td>
-          <td><button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button></td>
+
             
+
+          <tr>
+          <td><input class="form-control" ng-model="calon.tglmasuk"></td>
+          <td><input class="form-control" ng-model="calon.nama"></td>
+          <td><button class="btn btn-primary" ng-click="addcalon()">Tambah calon</button></td>
+          <td><button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button></td>
+         
+            </tr> 
+
+          <tr ng-repeat="calon in pelamar">
+          <td>{{calon.tglmasuk}}</td>
+          <td>{{calon.nama}}</td>
+            <td>{{calon.kota}}</td>
+            <td>{{calon.TglLahir}}</td>
+              <td>{{calon.alamat}}</td>
+              <td>{{calon.NoHP}}</td>
+            
+            
+            <td>{{calon.pendidikan}}</td><td>{{calon.pendidikan}}</td>
+            <td>{{calon.jurusan}}</td>
+            <td>{{calon.pengalaman}}</td>
+            <td>{{calon.pelatihan}}</td>  
+            <td>{{calon.foto}}</td>  
+
+          <td><button class="btn btn-danger" ng-click="remove(calon._id)">Remove</button></td>
+          <td><button class="btn btn-warning" ng-click="edit(calon._id)">Edit</button></td>
+          
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
   <script src="angular.min.js"></script>
   <script src="controllers/controller.js"></script>
+
   </body>
 </html>

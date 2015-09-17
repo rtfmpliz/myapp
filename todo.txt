@@ -1,0 +1,7 @@
+- upload fot
+- show foto
+- edit
+- create
+- detail
+- delete plus modal untuk confirm
+
